@@ -25,7 +25,7 @@ You can download released versions and nightly build artifacts from: https://www
     cd sample-getting-started
     mvn clean package liberty:run-server
 
-Open browser to http://localhost:9080/ and explore the demo application.
+Open browser to http://localhost:9080/ and explore the demo application now.
 
 ### Open Liberty Guides
 Visit the [OpenLiberty website](https://openliberty.io/guides/) for a number of step by step guides.
