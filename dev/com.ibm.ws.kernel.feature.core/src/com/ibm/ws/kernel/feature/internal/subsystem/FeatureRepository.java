@@ -55,6 +55,7 @@ import com.ibm.ws.kernel.feature.internal.ProvisionerConstants;
 import com.ibm.ws.kernel.feature.internal.subsystem.FeatureDefinitionUtils.ImmutableAttributes;
 import com.ibm.ws.kernel.feature.internal.subsystem.FeatureDefinitionUtils.ProvisioningDetails;
 import com.ibm.ws.kernel.feature.provisioning.ActivationType;
+import com.ibm.ws.kernel.feature.provisioning.FeatureResource;
 import com.ibm.ws.kernel.feature.provisioning.ProvisioningFeatureDefinition;
 import com.ibm.ws.kernel.feature.resolver.FeatureResolver;
 import com.ibm.ws.kernel.feature.resolver.FeatureResolver.Selector;
@@ -194,6 +195,25 @@ public final class FeatureRepository implements FeatureResolver.Repository {
     public FeatureRepository(WsResource res, BundleContext bundleContext) {
         cacheResource = res;
         this.bundleContext = bundleContext;
+    }
+
+    /**
+     * Answer the versioned feature if exists for the passed platform version or null if doesn't exist.
+     *
+     * @return String versionedFeatureName
+     */
+    public String getVersionlessFeatureVersionForPlatform(String versionlessFeatureName, String platformName) {
+        SubsystemFeatureDefinitionImpl versionlessFeature;
+        Map features = getAllFeatures();
+        versionlessFeature = (SubsystemFeatureDefinitionImpl) features.get(versionlessFeatureName);
+        if (!versionlessFeature.isVersionless())
+            return null;
+        Collection<FeatureResource> featureChildren = versionlessFeature.getConstituents(null);
+        return null;
+    }
+
+    public Set<String> getCommonPlatformsForFeatureSet(Set<String> features) {
+        return new HashSet<String>();
     }
 
     /**

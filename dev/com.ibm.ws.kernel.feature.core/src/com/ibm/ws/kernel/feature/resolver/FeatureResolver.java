@@ -90,6 +90,7 @@ public interface FeatureResolver {
          * @return The additional versions of the feature that can be tolerated.
          */
         List<String> getConfiguredTolerates(String baseSymbolicName);
+
     }
 
     /**

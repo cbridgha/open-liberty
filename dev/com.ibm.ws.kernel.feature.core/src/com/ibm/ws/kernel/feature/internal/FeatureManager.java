@@ -244,7 +244,7 @@ public class FeatureManager implements FixManager, FeatureProvisioner, Framework
 
         Set<String> getPlatformsWithLowerCaseName() {
             Set<String> lcnPlatforms = new HashSet<String>();
-            if(platforms == null){
+            if (platforms == null) {
                 return lcnPlatforms;
             }
             for (String platform : platforms) {
@@ -348,7 +348,7 @@ public class FeatureManager implements FixManager, FeatureProvisioner, Framework
         private volatile Collection<ProvisioningFeatureDefinition> kernelFeatures;
 
         private final FeatureManager featureManager;
-       
+
         private final ProvisioningMode initialMode;
 
         KernelFeaturesHolder(FeatureManager featureManager, ProvisioningMode initialMode) {
@@ -1569,7 +1569,8 @@ public class FeatureManager implements FixManager, FeatureProvisioner, Framework
                         bundleCache.addAllNoReplace(newBundleList);
 
                         // Update installedFeatures with the features that were successfully added
-                        featureRepository.setResolvedFeatures(goodFeatures, newConfiguredFeatures, reportedConfigurationErrors, newConfiguredPlatforms, platformEnvironmentVariable);
+                        featureRepository.setResolvedFeatures(goodFeatures, newConfiguredFeatures, reportedConfigurationErrors, newConfiguredPlatforms,
+                                                              platformEnvironmentVariable);
                     }
                 }
             }
@@ -1652,6 +1653,10 @@ public class FeatureManager implements FixManager, FeatureProvisioner, Framework
             }
         }
 
+        //TestStuff
+        FeatureRepository repo = featureRepository;
+        repo.getVersionlessFeatureVersionForPlatform("jsp", "jakartaee-9.1");
+
         boolean status = checkInstallStatus(installStatus);
 
         // Make sure bundles are ready to start
@@ -1728,10 +1733,10 @@ public class FeatureManager implements FixManager, FeatureProvisioner, Framework
     private boolean areConfiguredFeaturesGood(Set<String> newConfiguredFeatures, Set<String> newConfiguredPlatforms) {
         if (!!!featureRepository.isDirty()
             && !!!featureRepository.hasConfigurationError()
-            && featureRepository.getConfiguredFeatures().equals(newConfiguredFeatures)){
-            if( !isBeta || (isBeta && featureRepository.getPlatforms().equals(newConfiguredPlatforms) 
-                && equals(featureRepository.getPlatformEnvVar(), platformEnvironmentVariable))) {
-                    
+            && featureRepository.getConfiguredFeatures().equals(newConfiguredFeatures)) {
+            if (!isBeta || (isBeta && featureRepository.getPlatforms().equals(newConfiguredPlatforms)
+                            && equals(featureRepository.getPlatformEnvVar(), platformEnvironmentVariable))) {
+
                 // check that all installed features are still installed
                 for (String resolvedFeature : featureRepository.getResolvedFeatures()) {
                     if (featureRepository.getFeature(resolvedFeature) == null) {

@@ -176,7 +176,7 @@ public class RepositoryUtil {
 
         File rootFeaturesInputFile = FEATURES_FILE;
         String rootInputPath = rootFeaturesInputFile.getCanonicalPath();
-        if (!rootFeaturesInputFile.exists()) {
+        if (true) {
             Assert.fail("Features input [ " + rootInputPath + " ] does not exist");
         } else {
             System.out.println("Features input [ " + rootInputPath + " ]");
